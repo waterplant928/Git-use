@@ -1,0 +1,102 @@
+﻿一、初始配置
+git config --system user.name XXX
+git config --global user.email XXX
+git config core.editor pycharm
+git config --list
+二.基本命令
+1.初始化
+git init(初始化仓库时必须有一个readme.md文件）
+2.查看文件状态
+git status
+3.添加修改文件到暂存区
+git add .
+4.忽略修改文件
+.gitignore文件，在仓库中创建此文件，则其文件中列出的文件在暂存里忽略
+5.撤回暂存的某文件
+git rm --cached XXX
+6.提交暂存文件到仓库区
+git commit -m "xxx"
+7.查看仓库日志
+git log
+git log --pretty=oneline
+8.将本地工作文件夹中的文件与仓库中的文件进行对比
+git diff XXX 
+10.将仓库中的文件取回
+git chekout -- XXX
+11.删除工作区文件,与add命令同级，同步到暂存区
+git rm XXX
+12.移动文件,与add命令同级，同步到暂存区
+git mv file path
+13.退回到提交的上N个版本,有几个^，仓库区就退回几个版本，并且工作区也与仓库区同步
+git reset --hard HEAD^
+13.退回到提交的某个版本,由Hash码的前7位指定，并且工作区也与仓库区同步
+git reset --hard Hash码的前7位
+14.退回到任意版本
+git reflog,获取所有提交操作，根据相应的Hash值，再用
+git reset --hard Hash码的前7位 ，跳转到任意提交位置
+15.添加标签，若不写hash前7位，则在head指向的最新提交处添加
+git tag 名称 [Hash码的前7位] -m "XXX"
+16.查看标签
+git tag
+16.显示标签详细信息
+git show 标签名称
+17.利用标签也可任意前进、回退程序版本
+先用git tag查看所有标签名称，之后再用git reset --hard 标签名称，跳转到任意标签
+18.删除标签
+git tag -d 标签名
+三、保存工作区命令
+1.保存工作区
+git stash save XXX
+2.查看保存的所有工作区
+git stash list
+3.应用某个工作区的修改,stash@{X}为通过查看工作区得到的编号
+git stash apply stash@{X}
+4.删除保存的工作区
+git stash drop stash@{X}
+git stash clear
+四、分支
+1.查看分支
+git branch
+2.添加分支
+git branch 分支名
+3.切换分支
+git checkout 分支名
+4.分支创建、切换同时进行
+git checkout -b 分支名
+5.合并分支
+git merge 分支名
+6.删除分支，-d选项只能删除合并过的分支，如果强行删除则用-D选项
+git branch -d 分支名
+五、远程仓库
+1.克隆远程仓库
+git clone 远程地址
+2.设置远程主机
+git remote add origin 远程主机地址
+3.查看远程主机
+git remote
+4.删除远程主机
+git remote rm origin
+5.向远程主机上传本地分支,-u第一次上传时添加与远程主机的关联，之后就不用加了
+git push -u origin master
+git push,第2次之后的推送就不用加后边的地址及分支内容了
+git push --force origin,当本地版本落后于远程仓库版本时，不加--force则无法正常推送
+6.查看远程分支
+git branch -a
+7.删除远程仓库分支
+git push origin --delete 分支名
+git push origin :分支名
+8.上传标签
+git push origin 标签名
+git push origin --tags,所有标签
+9.删除远程仓库标签
+git push origin --delete tab 标签名
+10.从远程获取代码
+git pull,直接拉取到本地分支
+git fetch origin master:tmp,将远程仓库分支master拉到到本地，并新创建一个分支，如需要，通过merge命令合并分支
+三、其它命令
+1.清屏
+ctrl + L
+DOS 清屏指令：  cls     
+linux清屏指令： clear
+2.日志太多，分多屏查看，用回车翻页，q退出
+
