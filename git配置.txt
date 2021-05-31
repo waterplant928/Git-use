@@ -2,6 +2,7 @@
 git config --system user.name XXX
 git config --global user.email XXX
 git config core.editor pycharm
+git config --global http.sslverify false
 git config --list
 二.基本命令
 1.初始化
